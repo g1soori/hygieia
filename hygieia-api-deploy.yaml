@@ -19,7 +19,11 @@ spec:
         app: hygieia-api
     spec:
       containers:
+<<<<<<< HEAD
       - image: g1sooricontainerreg.azurecr.io/hygieia/hygieia-api
+=======
+      - image: g1sooricontainerreg.azurecr.io/hygieia-api:9
+>>>>>>> azure-pipelines
         name: hygieia-api
         ports:
           - containerPort: 8080
