@@ -38,10 +38,6 @@ stages:
         deploy:
           steps:
           - checkout: self
-          - script: pwd
-          - script: dir $(Build.SourcesDirectory)
-          - script: ls -l
-          - script: ls -ld $(Pipeline.Workspace)
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
