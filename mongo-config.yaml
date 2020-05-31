@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  mongoadmin: dbadmin
+  mongosvc: mongo-service
+  mongoport: "27017"
+  mongouser: dashboarduser
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: mongo-config
+  namespace: hygieia
+
+
+

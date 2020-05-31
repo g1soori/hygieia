@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"extensions/v1beta1","kind":"Ingress","metadata":{"annotations":{"kubernetes.io/ingress.class":"nginx","nginx.ingress.kubernetes.io/rewrite-target":"/$1","nginx.ingress.kubernetes.io/ssl-redirect":"false"},"name":"crdb-ingress-service","namespace":"vmt-regr"},"spec":{"rules":[{"http":{"paths":[{"backend":{"serviceName":"crdb-server-cluster-ip-service","servicePort":8000},"path":"/(.*)"},{"backend":{"serviceName":"crdb-server-cluster-ip-service","servicePort":8000},"path":"/api/?(.*)"}]}}]}}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  creationTimestamp: "2020-04-03T00:21:02Z"
+  generation: 1
+  name: crdb-ingress-service
+  namespace: vmt-regr
+  resourceVersion: "109877327"
+  selfLink: /apis/extensions/v1beta1/namespaces/vmt-regr/ingresses/crdb-ingress-service
+  uid: 00237ff2-7541-11ea-a44a-3221b29e02bd
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: crdb-server-cluster-ip-service
+          servicePort: 8000
+        path: /(.*)
+      - backend:
+          serviceName: crdb-server-cluster-ip-service
+          servicePort: 8000
+        path: /api/?(.*)
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.255.58.132
+    - ip: 10.255.58.194

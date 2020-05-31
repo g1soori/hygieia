@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hygieia-bamboo
+  name: hygieia-bamboo
+  namespace: hygieia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hygieia-bamboo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hygieia-bamboo
+    spec:
+      containers:
+      - image: devtesthygieiaacr.azurecr.io/hygieia/bamboo-collector:1.3
+        name: hygieia-bamboo
+        env:
+        - name: MONGODB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongosvc 
+        - name: MONGODB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongoport
+        - name: HYGIEIA_API_ENV_SPRING_DATA_MONGODB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongouser
+        - name: HYGIEIA_API_ENV_SPRING_DATA_MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: dbuserpwd
+        - name: JENKINS_MASTER
+          valueFrom:
+            configMapKeyRef:
+              name: bamboo-config
+              key: server
+        - name: JENKINS_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: bamboo-config
+              key: user
+        - name: JENKINS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: bamboo-secret
+              key: password
+        resources: {}
+status: {}

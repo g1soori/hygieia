@@ -1,0 +1,37 @@
+# apiVersion: extensions/v1beta1
+# kind: Ingress
+# metadata:
+#   annotations:
+#     kubernetes.io/ingress.class: nginx
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#     nginx.ingress.kubernetes.io/rewrite-target: /$2
+#   name: hygieia-ingress
+#   namespace: hygieia
+# spec:
+#   rules:
+#   - host: test-code-intelligence.azurewebsites.net
+#     http:
+#       paths:
+#       - backend:
+#           serviceName: hygieia-ui-svc-ci
+#           servicePort: 80
+#         path: /hygieia
+
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hygieia-ingress
+  namespace: hygieia
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: hygieia-ui-svc-ci
+          servicePort: 80
+        path: /hygieia

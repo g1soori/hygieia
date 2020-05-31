@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hygieia-ui
+  name: hygieia-ui
+  namespace: hygieia
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hygieia-ui
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hygieia-ui
+    spec:
+      containers:
+      - image: devtesthygieiaacr.azurecr.io/hygieia/hygieia-ui
+        name: hygieia-ui
+        ports:
+          - containerPort: 80
+        env:
+        - name: API_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: hygieia-api-config
+              key: apihost 
+        - name: API_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: hygieia-api-config
+              key: apiport
+        resources: {}
+status: {}

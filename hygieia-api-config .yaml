@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  apihost: hygieia-api-svc
+  apiport: "8080"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: hygieia-api-config
+  namespace: hygieia
+
+
+

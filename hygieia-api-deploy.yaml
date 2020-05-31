@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hygieia-api
+  name: hygieia-api
+  namespace: hygieia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hygieia-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hygieia-api
+    spec:
+      containers:
+      - image: devtesthygieiaacr.azurecr.io/hygieia/hygieia-api
+        name: hygieia-api
+        ports:
+          - containerPort: 8080
+        env:
+        - name: SPRING_DATA_MONGODB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongosvc 
+        - name: SPRING_DATA_MONGODB_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongoport
+        - name: SPRING_DATA_MONGODB_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-config
+              key: mongouser
+        - name: SPRING_DATA_MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret
+              key: dbuserpwd
+        - name: KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-secret
+              key: apikey
+        volumeMounts:
+          - mountPath: /hygieia/logs
+            name: api-logs
+        resources: {}
+      volumes:
+        - name: api-logs
+          persistentVolumeClaim:
+            claimName: pv-apilogs
+status: {}

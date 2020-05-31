@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pv-apilogs
+  namespace: hygieia
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: azurefile
+  resources:
+    requests:
+      storage: 2Gi

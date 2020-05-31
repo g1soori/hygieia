@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  patoken: ZmQxZGNhYzc5MTY1NDgzZGFkODYzNGM0ZmIxYWZlY2Y2OWNiNTllZQ==
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: github-token
+  namespace: hygieia
