@@ -5,8 +5,17 @@
 trigger:
 - master
 
+# resources:
+# - repo: self
+
 resources:
-- repo: self
+  repositories:
+  - repository: self
+    type: github
+    endpoint: github.com_g1soori
+  - repository: hygieiaapi
+    type: github
+    endpoint: github.com_g1soori
 
 variables:
 
