@@ -13,10 +13,10 @@ resources:
   - repository: self
     type: github
     endpoint: github.com_g1soori
-  - repository: api
-    type: github
-    endpoint: g1soori
-    name: g1soori
+  # - repository: api
+  #   type: github
+  #   endpoint: g1soori
+  #   name: api
 
 variables:
 
@@ -56,7 +56,7 @@ stages:
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
           
           - checkout: self 
-          - checkout: api   
+          - checkout: github://g1soori/api
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
