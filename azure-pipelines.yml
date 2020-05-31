@@ -50,8 +50,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/hygieia-api-deploy.yml
-                $(Pipeline.Workspace)/hygieia-api-svc.yml
+                $(Pipeline.Workspace)/hygieia-api-deploy.yaml
+                $(Pipeline.Workspace)/hygieia-api-svc.yaml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
