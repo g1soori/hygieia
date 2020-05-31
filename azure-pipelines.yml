@@ -16,6 +16,7 @@ resources:
   - repository: api
     type: github
     endpoint: g1soori
+    name: api
 
 variables:
 
